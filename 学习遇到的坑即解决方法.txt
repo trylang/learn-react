@@ -1,0 +1,5 @@
+1.首先是webpack实时刷新的问题：使用命令：webpack-dev-server --inline即可。
+	需要热加载时，使用命令：webpack-dev-server --contentbase src --inline --hot
+	src为起server的文件夹。
+
+2.不懂的地方：引入文件时，什么时候用require，什么时候用import？
