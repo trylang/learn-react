@@ -3,3 +3,55 @@
 	src为起server的文件夹。
 
 2.不懂的地方：引入文件时，什么时候用require，什么时候用import？
+
+3.
+I'm trying to one line export const my <SearchForm/> but for some reason it's erroring out.
+
+Here is my code
+
+import React from 'react';
+
+export const SearchForm = props => (
+  <form className="search-form" onSubmit={props.onSubmit}>
+    <input placeholder="Username" type="text" value={props.value} onChange={props.onChange}></input>
+    <input type="submit" value="Search"></input>
+  </form>)
+
+SearchForm.propTypes = {
+  onSubmit: React.PropTypes.func.isRequired,
+  value: React.PropTypes.string.isRequired,
+  onChange: React.PropTypes.func.isRequired
+}
+React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in. Check the render method of Home.
+It's fine if I do const SearchForm = props => ..... and export default <SearchForm/> at the bottom. I've also tried export default SearchForm... and other variations.
+
+I'm following an egghead.io tutorial and the guys using the exact same syntax so I have no idea what's wrong? Here's his code
+
+
+I guess you currently use
+
+import SearchForm  from './SearchForm';
+But because your export
+
+export const SearchForm = props => (
+So you must use this syntax
+
+import {SearchForm} from './SearchForm';
+To conclude:
+
+When export default, import with no {}
+
+When export without default, import with {}
+
+shareimprove this answer
+
+
+4.react-route中的Link组件不能使用了？
+
+5.超过长度文字就会实现点点点的效果？
+    const styleH3 = {
+        width:20,
+        whiteSpace:"nowrap",
+        overflow:"hidden",
+        textOverflow:"ellipsis"
+    }
