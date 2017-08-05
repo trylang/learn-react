@@ -55,3 +55,35 @@ shareimprove this answer
         overflow:"hidden",
         textOverflow:"ellipsis"
     }
+
+6. react-router 4.0版本使用笔记 
+React-router 4变化还是挺大的，看网上很多人遇到问题，都是基本用法的改变，所以这里记录一下。http://www.jianshu.com/p/d6727e8d81c4
+1.react-router 4.0升级不少内容，详细可看官网
+
+https://reacttraining.com/react-router/web/api/Route/Route-render-methods
+
+2.安装所必须要的包：
+
+npm install --save-dev react-router
+
+npm install --save-dev react-router-dom
+
+所有安装成功的包都可以在package.js里面查看版本。
+4.react-router 4.0 对于接受参数采用 { this.props.match.params.id }
+
+如下例子：<Route path="list/:id"></Router> 
+        <Link to="list/123456"></Link>
+
+获取参数值的方式是：{ this.props.match.params.id }
+
+7.在root的Router中不能直接添加<Route path= "/details/:id" component={PCNewsDetails} />
+ 会报browser.js:40 Uncaught Error: A <Router> may have only one child element 的错误。
+ 需要添加Switch方法。注意点二：只能是BrowserRouter as Router,Route,Link。否则也出不来。
+
+8.在Link中没有target属性，所以也就不能用target="_blank";
+
+
+
+
+
+

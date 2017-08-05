@@ -1,10 +1,4 @@
 import React from 'react';
-import {
-	Router,
-	Route,
-	Link,
-	BrowserHistory
-} from 'react-router';
 
 import {
 	Row,
@@ -155,7 +149,7 @@ class PCHeader extends React.Component {
 				<Row>
 					<Col span={4} offset={2}>
 						<a href="/" class="logo">
-							<img src="./src/images/logo.png" alt="logo"/>
+							<img src="../src/images/logo.png" alt="logo"/>
 							<span>ReactNews</span>
 						</a>
 					</Col>

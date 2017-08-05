@@ -1,10 +1,13 @@
 import React from 'react'; //from 后面需写成小写的react，否则总会有警告
 import ReactDOM from 'react-dom';
 import {
+	BrowserRouter as
 	Router,
+	Match,
 	Route,
-	hashHistory
-} from 'react-router';
+	Switch,
+	Link
+} from 'react-router-dom';
 import {
 	Button
 } from 'antd';
@@ -17,16 +20,30 @@ import MediaQuery from 'react-responsive';
 //导入文件
 import MobileIndex from './components/mobile_index';
 import PCIndex from './components/pc_index';
+import PCNewsDetails from './components/pc_news_details';
+import MobileDetails from './components/mobile_news_details';
 
 export default class Root extends React.Component {
 	render() {
 		return (
 			<div>
 				<MediaQuery query='(min-device-width: 1224px)'>
-					<PCIndex/>
+					<Router>
+						<Switch>
+							<Route exact path="/" component={PCIndex} />
+							<Route path= "/details/:id" component={PCNewsDetails} />
+						</Switch>							
+					</Router>
+					
 				</MediaQuery>
 				<MediaQuery query='(max-device-width: 1224px)'>
-					<MobileIndex/>
+					<Router>
+						<Switch>
+							<Route exact path="/" component={MobileIndex} />
+							<Route path= "/details/:id" component={MobileDetails} />
+						</Switch>	
+					</Router>
+					
 				</MediaQuery>
 				
 			</div>

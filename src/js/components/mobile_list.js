@@ -4,10 +4,11 @@ import {
   Col
 } from 'antd';
 import {
+  BrowserRouter as
   Router,
   Route,
   Link
-} from 'react-router';
+} from 'react-router-dom';
 export default class MobileList extends React.Component {
   constructor() {
     super();
@@ -29,20 +30,22 @@ export default class MobileList extends React.Component {
     } = this.state;
     const newsList = news.length > 0 ? news.map((newsItem, index) => (
       <section key={index} className="m_article list-item special_section clearfix">
-        <div className="m_article_img">
-          <img  src={newsItem.thumbnail_pic_s} alt={newsItem.title} />
-        </div>
-        <div className="m_article_info">
-          <div className="m_article_title">
-            <span>{newsItem.title}</span>
+        <Link to={`details/${newsItem.uniquekey}`}>
+          <div className="m_article_img">
+            <img  src={newsItem.thumbnail_pic_s} alt={newsItem.title} />
           </div>
-          <div className="m_article_desc clearfix">
-             <div className="m_article_desc_l">
-                <span className="m_article_channel">{newsItem.realtype}</span>
-                <span className="m_article_time">{newsItem.date}</span>
-              </div>
+          <div className="m_article_info">
+            <div className="m_article_title">
+              <span>{newsItem.title}</span>
+            </div>
+            <div className="m_article_desc clearfix">
+               <div className="m_article_desc_l">
+                  <span className="m_article_channel">{newsItem.realtype}</span>
+                  <span className="m_article_time">{newsItem.date}</span>
+                </div>
+            </div>
           </div>
-        </div>
+        </Link>        
       </section>
     )) : '没有加载到任何新闻';
     return (

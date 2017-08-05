@@ -3,12 +3,14 @@ import {
   Card
 } from 'antd';
 import {
+  BrowserRouter as
   Router,
   Route,
   Link
-} from 'react-router';
-console.log(Router)
-console.log(Link);
+} from 'react-router-dom';
+
+import PCNewsDetails from './pc_news_details';
+
 export default class PCNewsBlock extends React.Component {
   constructor() {
     super();
@@ -16,7 +18,7 @@ export default class PCNewsBlock extends React.Component {
       news: ''
     };
   };
-  componentWillMount() {
+  componentDidMount() {
     var myFetchOptions = {
       method: 'GET'
     };
@@ -30,17 +32,20 @@ export default class PCNewsBlock extends React.Component {
     } = this.state;
     const newsList = news.length > 0 ? news.map((newsItem, index) => (
       <li key={index}>
-         {newsItem.title}    
+        <Link to={`details/${newsItem.uniquekey}`}>
+          {newsItem.title}    
+        </Link>
+         
       </li>
     )) : '没有加载到任何新闻';
     return (
       <div class="topNewsList">
-        <Card>
-          <ul>
-            {newsList}
-          </ul>
-        </Card>
-      </div>
+          <Card>
+            <ul>
+              {newsList}
+            </ul>
+          </Card>
+        </div>
     );
   };
 }
