@@ -134,12 +134,10 @@ class PCHeader extends React.Component {
 			<Menu.Item key="logout" class="register">
     				<Button type="primary" htmlType="button">{this.state.userNickName}</Button>
     				&nbsp;&nbsp;
-    				// <Link>
-    				// 	<Button type="dashed" htmlType="button">个人中心</Button>
-    				// </Link>
-    				// &nbsp;&nbsp;
-    				// <Button type="ghost" htmlType="button" onClick={this.logout.bind(this)}>退出</Button>    			
-    			</Menu.Item> :
+    					<Button type="dashed" htmlType="button">个人中心</Button>
+    				&nbsp;&nbsp;
+    				<Button type="ghost" htmlType="button" onClick={this.logout.bind(this)}>退出</Button>    			
+    		</Menu.Item> :
 			<Menu.Item key="register" class="register">
 					<Icon type="appstore"/> 注册／登录
 				</Menu.Item>;

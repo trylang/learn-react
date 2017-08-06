@@ -7,6 +7,7 @@ import {
 import PCImageBlock from './pc_news_image_block';
 import Head from './pc_header';
 import Footer from './pc_footer';
+import Comments from './common_comments';
 
 export default class PCNewsDetails extends React.Component {
 
@@ -43,6 +44,8 @@ export default class PCNewsDetails extends React.Component {
 				<Row>
 					<Col span={14} offset={2} className="container">
 						<div class="articleContainer" dangerouslySetInnerHTML={this.createMarkup()}></div>
+						<hr/>
+						<Comments uniquekey={this.props.match.params.id}/>
 					</Col>
 					<Col span={6}>
 						<PCImageBlock count="40" type="yule"/>
