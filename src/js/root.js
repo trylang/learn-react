@@ -22,6 +22,7 @@ import MobileIndex from './components/mobile_index';
 import PCIndex from './components/pc_index';
 import PCNewsDetails from './components/pc_news_details';
 import MobileDetails from './components/mobile_news_details';
+import PCUserCenter from './components/pc_usercenter';
 
 export default class Root extends React.Component {
 	render() {
@@ -32,6 +33,7 @@ export default class Root extends React.Component {
 						<Switch>
 							<Route exact path="/" component={PCIndex} />
 							<Route path= "/details/:id" component={PCNewsDetails} />
+							<Route path= "/usercenter" component={PCUserCenter} />
 						</Switch>							
 					</Router>
 					

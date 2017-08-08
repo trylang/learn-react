@@ -13,7 +13,8 @@ import {
 	Button,
 	CheckBox,
 	Modal,
-	Card
+	Card,
+	notification
 } from 'antd';
 
 const FormItem = Form.Item;
@@ -34,7 +35,8 @@ class CommonComments extends React.Component {
 		var myFetchOptions = {
 			method: 'GET'
 		};
-		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getcomments&uniquekey=" + this.props.uniquekey, myFetchOptions).then(response => response.json()).then(json => {
+		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getcomments&uniquekey=" +
+			this.props.uniquekey, myFetchOptions).then(response => response.json()).then(json => {
 			this.setState({
 				comments: json
 			});
@@ -42,11 +44,43 @@ class CommonComments extends React.Component {
 	}
 
 	handlerSubmit(e) {
-		console.log(e);
-	}
+		e.preventDefault();
+		var myFetchOptions = {
+			method: 'GET'
+		};
+
+		this.props.form.validateFields((err, values) => {
+			if (!err) {
+				console.log(values);
+				fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=comment&userid=" + localStorage.userid + "&uniquekey=" +
+						this.props.uniquekey + "&commnet=" + values.remark, myFetchOptions)
+					.then(response => response.json())
+					.then(json => {
+						this.componentDidMount();
+						message.success("评论成功！");
+						this.props.form.resetFields(); //表单清空
+					})
+			}
+		})
+	};
+
+	addUserCollection() {
+		var myFetchOptions = {
+			method: 'GET'
+		};
+		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=uc&userid=" + localStorage.userid + "&uniquekey=" + this.props.uniquekey, myFetchOptions)
+			.then(response => response.json())
+			.then(json => {
+				//收藏成功以后进行一下全局的提醒
+				notification['success']({
+					message: '提示',
+					description: '此文章收藏成功'
+				})
+			})
+
+	};
 
 	render() {
-
 		const {
 			getFieldDecorator
 		} = this.props.form;
@@ -73,6 +107,8 @@ class CommonComments extends React.Component {
             						<Input type="textarea" placeholder="随便写哈" />)}
 							</FormItem>
 							<Button type="primary" htmlType="submit">提交评论</Button>
+							&nbsp;&nbsp;
+							<Button type="primary" onClick={this.addUserCollection.bind(this)}>收藏</Button>
 						</Form>
 					</Col>
 				</Row>

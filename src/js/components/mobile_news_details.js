@@ -46,6 +46,7 @@ export default class MobileNewsDetails extends React.Component {
 					<Row>
 						<Col span={24} className="container">
 							<div class="articleContainer" dangerouslySetInnerHTML={this.createMarkup()}></div>
+							<hr/>
 						</Col>					
 					</Row>
 					<Footer></Footer>

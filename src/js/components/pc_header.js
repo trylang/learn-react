@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+	BrowserRouter as
+	Router,
+	Route,
+	Link
+} from 'react-router-dom';
 
 import {
 	Row,
@@ -38,15 +44,15 @@ class PCHeader extends React.Component {
 	//错误提示：Uncaught (in promise) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in. Check the render method of `PCHeader`.
 	//原因就是没有写这个函数
 	componentWillMount() {
-		// if (localStorage.userid != '') {
-		// 	this.setState({
-		// 		hasLogined: true
-		// 	});
-		// 	this.setState({
-		// 		userNickName: localStorage.userNickName,
-		// 		userid: localStorage.userid
-		// 	})
-		// }
+		if (localStorage.userid != '') {
+			this.setState({
+				hasLogined: true
+			});
+			this.setState({
+				userNickName: localStorage.userNickName,
+				userid: localStorage.userid
+			})
+		}
 	}
 
 	setModalVisible(value) {
@@ -134,7 +140,9 @@ class PCHeader extends React.Component {
 			<Menu.Item key="logout" class="register">
     				<Button type="primary" htmlType="button">{this.state.userNickName}</Button>
     				&nbsp;&nbsp;
-    					<Button type="dashed" htmlType="button">个人中心</Button>
+    				<Link to={`/usercenter`}>
+    					<Button type="dashed" htmlType="button">个人中心</Button>    					
+    				</Link>
     				&nbsp;&nbsp;
     				<Button type="ghost" htmlType="button" onClick={this.logout.bind(this)}>退出</Button>    			
     		</Menu.Item> :
